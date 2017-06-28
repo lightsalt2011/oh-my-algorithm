@@ -5,7 +5,7 @@ struct list
   struct list *next;
 };
 
-struct list * find_node(struct list *head1; struct list *head2)
+struct list *find_node(struct list *head1; struct list *head2)
 {
   if(head1 == NULL || head2 == NULL)
     return NULL;//任意一个为空，不想交
