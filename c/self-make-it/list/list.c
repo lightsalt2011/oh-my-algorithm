@@ -3,6 +3,7 @@
 #include <time.h>
 #include "list.h"
 
+//不带表头的单链表数据结构实现
 int create_list(struct list **head, int len)
 {
   int i;
@@ -85,7 +86,7 @@ int get_length(struct list *head)
 }
 
 //insert befor which position
-int insert(struct list **head, int pos, int data) 
+int insert(struct list **head, int pos, int data)
 {
   struct list *p=*head;
   struct list *new;
@@ -124,7 +125,7 @@ int delete_list(struct list **head)
   for(;p != NULL; ) {
     tmp = p->next;
     free(p);
-    p = p->next;
+    p = tmp;
   }
   *head = NULL;
 }
@@ -136,9 +137,8 @@ int main()
 
   struct list *my_list;
   int len = 25;
-  int ret = create_list(&my_list, len);
-  if(ret)
-    printf("create list error\n");
+
+  create_list(&my_list, len);
   random_list(my_list);
   display_list(my_list);
 
