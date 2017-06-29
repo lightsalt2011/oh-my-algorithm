@@ -1,9 +1,13 @@
+/*
+  copyright by bokenshonen(kidd.dawny.lu@gmail.com)
+  myself no head link list library
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "list.h"
 
-//不带表头的单链表数据结构实现
 int create_list(struct list **head, int len)
 {
   int i;
@@ -35,6 +39,7 @@ int create_list(struct list **head, int len)
 
 void random_list(struct list *head)
 {
+  srand(time(0));
 	struct list *p = head;
 	for(;p != NULL;) {
 		p->value = rand() % 100;
@@ -58,7 +63,7 @@ void display_list(struct list *head)
 }
 
 //步步迈进法
-int *reverse(struct list **head)
+int reverse_list(struct list **head)
 {
   struct list *new_head = NULL;
   struct list *p = *head;
@@ -86,12 +91,13 @@ int get_length(struct list *head)
 }
 
 //insert befor which position
-int insert(struct list **head, int pos, int data)
+int insert_node(struct list **head, int index, int data)
 {
   struct list *p=*head;
   struct list *new;
 
-  if(head == NULL || pos < 1) {
+  if(head == NULL || index < 1 || index-1 > get_length(p)) {
+    printf("pos not exist\n");
     return -1;
   }
 
@@ -99,21 +105,41 @@ int insert(struct list **head, int pos, int data)
   if(!new)
     return -1;
 
-  if(pos == 1) {
+  if(index == 1) {
     new->value = data;
     new->next = *head;
     *head = new; //改变新表头
   } else {
-    if((pos-1) > get_length(p)){
-      printf("pos not exist\n");
-      return -1;
-    }
-    for (int i=1; i<pos-1; i++)
+    for (int i=1; i<index-1; i++) //算好步进，在第8个节点前插入，其实只需要移动6步，因为我们本身已经在第一个节点。
       p=p->next;
 
     new->value = data;
     new->next = p->next;
     p->next = new;
+  }
+  return 0;
+}
+
+int delete_node(struct list **head, int index)
+{
+  struct list *p=*head;
+  struct list *prev;
+
+  if(head == NULL || index < 1 || index > get_length(p)) {
+    printf("pos not exist\n");
+    return -1;
+  }
+
+  if(index == 1){//头节点
+    *head=p->next;
+    free(p);
+  } else {
+    for (int i=0; i<index-1; i++){
+      prev=p;
+      p=p->next;
+    }
+    prev->next=p->next;
+    free(p);
   }
   return 0;
 }
@@ -128,28 +154,4 @@ int delete_list(struct list **head)
     p = tmp;
   }
   *head = NULL;
-}
-
-//无表头链表，有可能改变表头的操作，传参都需要用表头取地址传入。
-int main()
-{
-  srand(time(0));
-
-  struct list *my_list;
-  int len = 25;
-
-  create_list(&my_list, len);
-  random_list(my_list);
-  display_list(my_list);
-
-  printf("\nnow insert\n");
-  insert(&my_list, 10, 50);
-  display_list(my_list);
-
-  printf("\nnow reverse this list\n");
-  reverse(&my_list);
-  display_list(my_list);
-
-  delete_list(&my_list);
-  display_list(my_list);
 }
