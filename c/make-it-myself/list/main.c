@@ -9,7 +9,7 @@
 int main()
 {
   struct list *my_list;
-  int len = 25;
+  int len = 10;
 
   create_list(&my_list, len);
   random_list(my_list);
@@ -23,7 +23,7 @@ int main()
   reverse_list(&my_list);
   display_list(my_list);
 
-  printf("\nnow delete 5 node\n");
+  printf("\nnow delete node\n");
   delete_node(&my_list, get_length(my_list));
   display_list(my_list);
 
