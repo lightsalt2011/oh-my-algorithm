@@ -2,7 +2,8 @@
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
   myself no head link list library
 */
-
+#ifndef _LIST_H_
+#define _LIST_H_
 struct list
 {
   int value;
@@ -17,5 +18,7 @@ void display_list(struct list *head);
 
 int reverse_list(struct list **head);
 int insert_node(struct list **head, int index, int data);
+int change_node(struct list **head, int index, int data);
 int delete_node(struct list **head, int index);
 int delete_list(struct list **head);
+#endif

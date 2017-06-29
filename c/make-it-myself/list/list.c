@@ -65,17 +65,17 @@ void display_list(struct list *head)
 //步步迈进法
 int reverse_list(struct list **head)
 {
-  struct list *new_head = NULL;
+  struct list *prev = NULL;
   struct list *p = *head;
   struct list *tmp;
 
   for(; p != NULL;){
     tmp = p->next; //保存下一个节点地址
-    p->next = new_head; //下一个地址赋值为new_head
-    new_head = p; //前进，当前pos赋值给new_head，准备下一轮
+    p->next = prev; //将当前节点的指向prev
+    prev = p; //前进，当前节点赋值给new_head，准备下一轮
     p = tmp; //前进，下一个节点地址变成当前pos
   }
-  *head = new_head;
+  *head = prev;
   return 0;
 }
 
@@ -94,9 +94,9 @@ int get_length(struct list *head)
 int insert_node(struct list **head, int index, int data)
 {
   struct list *p=*head;
-  struct list *new;
+  struct list *new, *prev;
 
-  if(head == NULL || index < 1 || index-1 > get_length(p)) {
+  if(*head == NULL || index < 1 || index-1 > get_length(p)) {
     printf("pos not exist\n");
     return -1;
   }
@@ -110,12 +110,31 @@ int insert_node(struct list **head, int index, int data)
     new->next = *head;
     *head = new; //改变新表头
   } else {
-    for (int i=1; i<index-1; i++) //算好步进，在第8个节点前插入，其实只需要移动6步，因为我们本身已经在第一个节点。
+    for (int i=1; i<index; i++) {
+      prev=p;
       p=p->next;
-
+    }
     new->value = data;
-    new->next = p->next;
-    p->next = new;
+    new->next = prev->next;
+    prev->next = new;
+  }
+  return 0;
+}
+
+int change_node(struct list **head, int index, int data)
+{
+  struct list *p = *head;
+  if(*head == NULL || index < 1 || index > get_length(p)) {
+    printf("pos not exist\n");
+    return -1;
+  }
+  if(index==1) {
+    p->value = data;
+  } else {
+    for (int i=1;i<index;i++){
+      p=p->next;
+    }
+    p->value=data;
   }
   return 0;
 }
@@ -134,7 +153,7 @@ int delete_node(struct list **head, int index)
     *head=p->next;
     free(p);
   } else {
-    for (int i=0; i<index-1; i++){
+    for (int i=1; i<index; i++){
       prev=p;
       p=p->next;
     }
