@@ -9,7 +9,7 @@
 int main()
 {
   struct list *my_list;
-  int len = 10;
+  int len = 25;
 
   create_list(&my_list, len);
   random_list(my_list);
@@ -29,6 +29,16 @@ int main()
 
   printf("\nnow change last node to 66\n");
   change_node(&my_list, get_length(my_list), 66);
+  display_list(my_list);
+
+  printf("\nuse secletion sort\n");
+  selection_sort(&my_list);
+  display_list(my_list);
+
+  printf("\nuse bubble sort\n");
+  random_list(my_list);
+  display_list(my_list);
+  bubble_sort(&my_list);
   display_list(my_list);
 
   delete_list(&my_list);

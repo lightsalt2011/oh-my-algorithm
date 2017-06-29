@@ -21,4 +21,8 @@ int insert_node(struct list **head, int index, int data);
 int change_node(struct list **head, int index, int data);
 int delete_node(struct list **head, int index);
 int delete_list(struct list **head);
+
+int selection_sort(struct list **head);
+int insertion_sort(struct list **head);
+int bubble_sort(struct list **head);
 #endif
