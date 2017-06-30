@@ -10,6 +10,9 @@ struct list
   struct list *next;
 };
 
+/* struct list **head is the linked list;
+   and *head is the head node */
+
 int create_list(struct list **head, int len);
 int get_length(struct list **head);
 

@@ -7,14 +7,14 @@
 #include "list.h"
 
 /*
-选择排序
-插入排序
-冒泡排序
-希尔排序
+selection sort
+insertion sort
+bubble sort
+shell sort
 */
 
 /*
-  交换数值
+  swap value
 */
 int selection_sort(struct list **head)
 {
@@ -63,7 +63,7 @@ int selection_sort(struct list **head)
 //
 
 /*
-  交换指针
+  swap pointer
 */
 int insertion_sort(struct list **head)
 {

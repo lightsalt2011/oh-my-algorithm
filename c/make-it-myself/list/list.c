@@ -3,7 +3,7 @@
   myself no head linked list library
 */
 
-//All linked list quiz can be solved by struct list *prev, *curr, *post;
+/* All linked list quiz can be solved by struct list *prev, *curr, *post; */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -114,7 +114,7 @@ int insert_node(struct list **head, int index, int data)
   if(index == 1) {
     new->value = data;
     new->next = *head;
-    *head = new; //改变新表头
+    *head = new; //change to new head
   } else {
     for (int i=1; i<index; i++) {
       prev=curr;
