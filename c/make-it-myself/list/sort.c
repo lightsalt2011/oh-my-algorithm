@@ -110,7 +110,7 @@ int bubble_sort(struct list **head)
 
   struct list *first = *head;
   struct list *prev, *curr, *post;
-  int len = get_length(*head);
+  int len = get_length(head);
 
   for (int i=0; i < len; i++) {
     prev = NULL;

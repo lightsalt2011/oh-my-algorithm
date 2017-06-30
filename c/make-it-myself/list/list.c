@@ -3,6 +3,8 @@
   myself no head linked list library
 */
 
+//All linked list quiz can be solved by struct list *prev, *curr, *post;
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -35,7 +37,7 @@ int create_list(struct list **head, int len)
   return 0;
 }
 
-void random_list(struct list *head)
+void random_list(struct list **head)
 {
   static int init = 0;
   if(!init){
@@ -43,21 +45,21 @@ void random_list(struct list *head)
     srand(time(0));
   }
 
-  struct list *curr = head;
+  struct list *curr = *head;
 	for(;curr != NULL;) {
 		curr->value = rand() % 100;
 		curr=curr->next;
 	}
 }
 
-void display_list(struct list *head)
+void display_list(struct list **head)
 {
-  if(head == NULL) {
+  if(*head == NULL) {
     printf("empty list\n");
     return;
   }
 
-  struct list *curr = head;
+  struct list *curr = *head;
   for(;curr != NULL;) {
       printf("%d ", curr->value);
       curr=curr->next;
@@ -65,7 +67,6 @@ void display_list(struct list *head)
   printf("\n");
 }
 
-//步步迈进法
 int reverse_list(struct list **head)
 {
   struct list *prev = NULL;
@@ -73,19 +74,19 @@ int reverse_list(struct list **head)
   struct list *post = curr->next;
 
   for(; curr != NULL;){
-    post = curr->next; //保存下一个节点地址
-    curr->next = prev; //将当前节点的指向prev
-    prev = curr; //前进
-    curr = post; //前进
+    post = curr->next; //save curr->next pointer to post
+    curr->next = prev; //set curr->next back to prev
+    prev = curr; //linked list forward
+    curr = post; //forward
   }
 
-  *head = prev;//表头时prev而不是curr，因为此时curr已经为NULL
+  *head = prev;//head must be prev not curr，since curr==NULL now
   return 0;
 }
 
-int get_length(struct list *head)
+int get_length(struct list **head)
 {
-  struct list *curr = head;
+  struct list *curr = *head;
   int len = 0;
   for(;curr != NULL;){
     len++;
@@ -101,7 +102,7 @@ int insert_node(struct list **head, int index, int data)
   struct list *prev=NULL;
   struct list *new=NULL;
 
-  if(*head == NULL || index < 1 || index-1 > get_length(*head)) {
+  if(*head == NULL || index < 1 || index-1 > get_length(head)) {
     printf("pos not exist\n");
     return -1;
   }
@@ -129,7 +130,7 @@ int insert_node(struct list **head, int index, int data)
 int change_node(struct list **head, int index, int data)
 {
   struct list *curr = *head;
-  if(*head == NULL || index < 1 || index > get_length(*head)) {
+  if(*head == NULL || index < 1 || index > get_length(head)) {
     printf("pos not exist\n");
     return -1;
   }
@@ -150,7 +151,7 @@ int delete_node(struct list **head, int index)
   struct list *curr=*head;
   struct list *prev;
 
-  if(head == NULL || index < 1 || index > get_length(*head)) {
+  if(head == NULL || index < 1 || index > get_length(head)) {
     printf("pos not exist\n");
     return -1;
   }
