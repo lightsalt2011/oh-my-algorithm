@@ -1,6 +1,6 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself no head link list library
+  myself no head linked list library
 */
 
 #include <stdio.h>
@@ -12,8 +12,7 @@ int create_list(struct list **head, int len)
 {
   int i;
   struct list *new;
-  struct list *p=NULL;
-  struct list *tmp_head;
+  struct list *curr=NULL;
 
   for(i=0; i<len; i++) {
     new = malloc(sizeof(struct list));
@@ -24,26 +23,30 @@ int create_list(struct list **head, int len)
 
     new->value = 0;//init
 
-    if(p == NULL) { //first node
-      tmp_head=new;
-      p=new;
+    if(curr == NULL) { //first node
+      *head=new;
+      curr=new;
     } else {
-      p->next=new;
-      p=p->next;
+      curr->next=new;
+      curr=curr->next;
     }
   }
-  p->next = NULL;
-  *head = tmp_head;
+  curr->next = NULL;
   return 0;
 }
 
 void random_list(struct list *head)
 {
-  srand(time(0));
-	struct list *p = head;
-	for(;p != NULL;) {
-		p->value = rand() % 100;
-		p=p->next;
+  static int init = 0;
+  if(!init){
+    init = 1;
+    srand(time(0));
+  }
+
+  struct list *curr = head;
+	for(;curr != NULL;) {
+		curr->value = rand() % 100;
+		curr=curr->next;
 	}
 }
 
@@ -54,10 +57,10 @@ void display_list(struct list *head)
     return;
   }
 
-  struct list *p = head;
-  for(;p != NULL;) {
-      printf("%d ", p->value);
-      p=p->next;
+  struct list *curr = head;
+  for(;curr != NULL;) {
+      printf("%d ", curr->value);
+      curr=curr->next;
   }
   printf("\n");
 }
@@ -66,26 +69,27 @@ void display_list(struct list *head)
 int reverse_list(struct list **head)
 {
   struct list *prev = NULL;
-  struct list *p = *head;
-  struct list *tmp;
+  struct list *curr = *head;
+  struct list *post = curr->next;
 
-  for(; p != NULL;){
-    tmp = p->next; //保存下一个节点地址
-    p->next = prev; //将当前节点的指向prev
-    prev = p; //前进，当前节点赋值给new_head，准备下一轮
-    p = tmp; //前进，下一个节点地址变成当前pos
+  for(; curr != NULL;){
+    post = curr->next; //保存下一个节点地址
+    curr->next = prev; //将当前节点的指向prev
+    prev = curr; //前进，当前节点赋值给new_head，准备下一轮
+    curr = post; //前进，下一个节点地址变成当前pos
   }
-  *head = prev;
+
+  *head = prev;//表头时prev而不是curr，因为此时curr已经为NULL
   return 0;
 }
 
 int get_length(struct list *head)
 {
-  struct list *p = head;
+  struct list *curr = head;
   int len = 0;
-  for(;p != NULL;){
+  for(;curr != NULL;){
     len++;
-    p=p->next;
+    curr=curr->next;
   }
   return len;
 }
@@ -93,10 +97,11 @@ int get_length(struct list *head)
 //insert befor which position
 int insert_node(struct list **head, int index, int data)
 {
-  struct list *p=*head;
-  struct list *new, *prev;
+  struct list *curr=*head;
+  struct list *prev=NULL;
+  struct list *new=NULL;
 
-  if(*head == NULL || index < 1 || index-1 > get_length(p)) {
+  if(*head == NULL || index < 1 || index-1 > get_length(*head)) {
     printf("pos not exist\n");
     return -1;
   }
@@ -111,8 +116,8 @@ int insert_node(struct list **head, int index, int data)
     *head = new; //改变新表头
   } else {
     for (int i=1; i<index; i++) {
-      prev=p;
-      p=p->next;
+      prev=curr;
+      curr=curr->next;
     }
     new->value = data;
     new->next = prev->next;
@@ -123,54 +128,55 @@ int insert_node(struct list **head, int index, int data)
 
 int change_node(struct list **head, int index, int data)
 {
-  struct list *p = *head;
-  if(*head == NULL || index < 1 || index > get_length(p)) {
+  struct list *curr = *head;
+  if(*head == NULL || index < 1 || index > get_length(*head)) {
     printf("pos not exist\n");
     return -1;
   }
+
   if(index==1) {
-    p->value = data;
+    curr->value = data;
   } else {
     for (int i=1;i<index;i++){
-      p=p->next;
+      curr=curr->next;
     }
-    p->value=data;
+    curr->value=data;
   }
   return 0;
 }
 
 int delete_node(struct list **head, int index)
 {
-  struct list *p=*head;
+  struct list *curr=*head;
   struct list *prev;
 
-  if(head == NULL || index < 1 || index > get_length(p)) {
+  if(head == NULL || index < 1 || index > get_length(*head)) {
     printf("pos not exist\n");
     return -1;
   }
 
   if(index == 1){//头节点
-    *head=p->next;
-    free(p);
+    *head=curr->next;
+    free(curr);
   } else {
     for (int i=1; i<index; i++){
-      prev=p;
-      p=p->next;
+      prev=curr;
+      curr=curr->next;
     }
-    prev->next=p->next;
-    free(p);
+    prev->next=curr->next;
+    free(curr);
   }
   return 0;
 }
 
 int delete_list(struct list **head)
 {
-  struct list *p = *head;
-  struct list *tmp;
-  for(;p != NULL; ) {
-    tmp = p->next;
-    free(p);
-    p = tmp;
+  struct list *curr = *head;
+  struct list *post;
+  for(;curr != NULL; ) {
+    post = curr->next;
+    free(curr);
+    curr = post;
   }
   *head = NULL;
 }

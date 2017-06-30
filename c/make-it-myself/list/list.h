@@ -1,6 +1,6 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself no head link list library
+  myself no head linked list library
 */
 #ifndef _LIST_H_
 #define _LIST_H_

@@ -1,6 +1,6 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself no head link list library test program
+  myself no head linked list library
 */
 
 #include <stdio.h>
@@ -33,6 +33,12 @@ int main()
 
   printf("\nuse secletion sort\n");
   selection_sort(&my_list);
+  display_list(my_list);
+
+  printf("\nuse insertion sort\n");
+  random_list(my_list);
+  display_list(my_list);
+  insertion_sort(&my_list);
   display_list(my_list);
 
   printf("\nuse bubble sort\n");
