@@ -75,8 +75,8 @@ int reverse_list(struct list **head)
   for(; curr != NULL;){
     post = curr->next; //保存下一个节点地址
     curr->next = prev; //将当前节点的指向prev
-    prev = curr; //前进，当前节点赋值给new_head，准备下一轮
-    curr = post; //前进，下一个节点地址变成当前pos
+    prev = curr; //前进
+    curr = post; //前进
   }
 
   *head = prev;//表头时prev而不是curr，因为此时curr已经为NULL
