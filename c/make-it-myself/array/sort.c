@@ -11,7 +11,7 @@ int selection_sort(int array[], int len)
   int tmp;
 
   //position
-  int start=1;
+  int start=0;
   int end=len - 1;
 
   if (array==NULL || len < 1) {
@@ -32,13 +32,40 @@ int selection_sort(int array[], int len)
     }
 }
 
+int bubble_sort(int array[], int len)
+{
+  int i, j;
+  int tmp;
+
+  //position
+  int start=0;
+  int end=len - 1;
+
+  if (array==NULL || len < 1) {
+    printf("error\n");
+    return -1;
+  } else if (len == 1) {
+    return 0;
+  }
+
+  for(i=start; i<end; i++) {
+    for(j=start; j<end-i; j++) {
+      if(array[j] > array[j+1]) {
+        tmp = array[j];
+        array[j] = array[j+1];
+        array[j+1]= tmp;
+      }
+    }
+  }
+}
+
 int insertion_sort(int array[], int len)
 {
   int i, j;
   int tmp;
 
   //position
-  int start=3;
+  int start=0;
   int end=len - 1;
 
   if (array==NULL || len < 1) {
@@ -61,50 +88,3 @@ int insertion_sort(int array[], int len)
     }
   }
 }
-
-int bubble_sort(int array[], int len)
-{
-  int i, j;
-  int tmp;
-
-  //position
-  int start=2;
-  int end=len - 1;
-
-  if (array==NULL || len < 1) {
-    printf("error\n");
-    return -1;
-  } else if (len == 1) {
-    return 0;
-  }
-
-  for(i=start; i<end; i++) {
-    for(j=start; j<end-i; j++) {
-      if(array[j] > array[j+1]) {
-        tmp = array[j];
-        array[j] = array[j+1];
-        array[j+1]= tmp;
-      }
-    }
-  }
-}
-
-int shell_sort(int array[], int len)
-{
-  int i,j;
-  int tmp;
-
-  int group;
-  for(group = len / 2; group > 0; group /= 2){
-    for(i = group; i < len; i++){
-      for(j = i - group; j>=0; j -= group){
-        if(array[j] > array[j + group]){
-          tmp = array[j];
-          array[j] = array[j + group];
-          array[j + group] = tmp;
-        }
-      }
-    }
-  }
-}
-

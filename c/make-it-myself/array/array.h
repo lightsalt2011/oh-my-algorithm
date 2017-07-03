@@ -14,13 +14,19 @@
 //int delete_member();
 //int delete_array();
 
+//array.c
 void random_array(int array[], int len);
 void display_array(int array[], int len);
 int reverse_array(int array[], int len);
 
+//sort.c
+int bubble_sort(int array[], int len);
 int selection_sort(int array[], int len);
 int insertion_sort(int array[], int len);
-int bubble_sort(int array[], int len);
+
+//shell_sort.c
 int shell_sort(int array[], int len);
+
+//quick_sort.c
 int quick_sort(int array[], int len);
 #endif

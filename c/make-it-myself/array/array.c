@@ -11,8 +11,9 @@ void random_array(int array[], int len)
 {
   static int init = 0;
   if(!init){
-    init = 1;
-    srand(time(0));
+    //init = 1;
+    //srand(time(0));
+    srand(63);
   }
 
   if(array == NULL || len == 0) {
@@ -21,12 +22,14 @@ void random_array(int array[], int len)
   }
 
 	for(int i=0; i < len;i++) {
-		array[i] = rand() % 100;
+		array[i] = rand() % 1000;
 	}
 }
 
 void display_array(int array[], int len)
 {
+  //  return;
+
   if(array == NULL || len == 0) {
     printf("empty array\n");
     return;

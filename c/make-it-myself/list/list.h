@@ -28,4 +28,5 @@ int delete_list(struct list **head);
 int selection_sort(struct list **head);
 int insertion_sort(struct list **head);
 int bubble_sort(struct list **head);
+int shell_sort(struct list **head);
 #endif
