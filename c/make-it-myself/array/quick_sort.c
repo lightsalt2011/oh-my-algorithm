@@ -34,12 +34,12 @@ static int partition_rowe(int array[], int low, int high)
   return low_index;
 }
 
-static int _quick_sort(int array[], int start, int end)
+static int _qsort(int array[], int start, int end)
 {
   if (end > start) {
     int pivot_index = partition_rowe(array, start, end);
-    _quick_sort(array, start, pivot_index - 1);
-    _quick_sort(array, pivot_index + 1, end);
+    _qsort(array, start, pivot_index - 1);
+    _qsort(array, pivot_index + 1, end);
   }
 }
 
@@ -59,5 +59,5 @@ int quick_sort(int array[], int len)
     return 0;
   }
 
-  _quick_sort(array, start, end);
+  _qsort(array, start, end);
 }

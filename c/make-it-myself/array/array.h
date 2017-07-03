@@ -27,6 +27,9 @@ int insertion_sort(int array[], int len);
 //shell_sort.c
 int shell_sort(int array[], int len);
 
+//heap_sort.c
+int heap_sort(int array[], int len);
+
 //quick_sort.c
 int quick_sort(int array[], int len);
 #endif

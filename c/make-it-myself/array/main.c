@@ -76,6 +76,16 @@ int main()
   display_array(my_array, len);
   printf("time is %.2f\n\n", difftime(end,begin));
 
+  printf("heap sort\n");
+  begin = clock();
+  for(i=0; i<loop; i++){
+    random_array(my_array, len);
+    heap_sort(my_array, len);
+  }
+  end = clock();
+  display_array(my_array, len);
+  printf("time is %.2f\n\n", difftime(end,begin));
+
   printf("quick sort\n");
   begin = clock();
   for(i=0; i<loop; i++){

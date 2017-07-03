@@ -3,23 +3,20 @@
   myself array library
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-
+/* src from Data Structures and Algorithm Analysis in C (Second Edition) */
 
 int shell_sort(int array[], int len)
 {
   int i,j;
   int tmp;
 
-  int group;
-  for(group = len / 2; group > 0; group /= 2){
-    for(i = group; i < len; i++){
+  for(int step = len / 2; step > 0; step /= 2){
+    for(i = step; i < len; i++){
       tmp = array[i];
 
-      for(j = i; j>=group; j -= group){
-        if(tmp < array[j - group]){
-          array[j] = array[j - group];
+      for(j = i; j>=step; j -= step){
+        if(tmp < array[j - step]){
+          array[j] = array[j - step];
         } else {
           break;
         }
