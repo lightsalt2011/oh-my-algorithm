@@ -1,6 +1,6 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself array library
+  myself sorting library
 */
 
 /* http://blog.csdn.net/u010155023/article/details/43951129 */

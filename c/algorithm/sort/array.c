@@ -1,11 +1,11 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself array library
+  myself sorting library
 */
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "array.h"
+#include "sort.h"
 
 void random_array(int array[], int len)
 {

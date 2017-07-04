@@ -1,18 +1,12 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself array library
+  myself sorting library
 */
-#ifndef _ARRAY_H_
-#define _ARRAY_H_
+#ifndef _SORT_H_
+#define _SORT_H_
 
 /* since array is often in stack not heap, we do not need 'create func' by malloc */
 /* array must give its length */
-
-//int create_array();
-//int insert_member();
-//int change_member();
-//int delete_member();
-//int delete_array();
 
 //array.c
 void random_array(int array[], int len);
@@ -27,7 +21,7 @@ int selection_sort(int array[], int len);
 int insertion_sort(int array[], int len);
 
 //shell_sort.c
-//time:  O(n^1.3)
+//time:  O(nlog2n)
 //space: O(1)
 int shell_sort(int array[], int len);
 

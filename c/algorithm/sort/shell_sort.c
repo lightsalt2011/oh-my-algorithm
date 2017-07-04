@@ -1,6 +1,6 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself array library
+  myself sorting library
 */
 
 /* src from Data Structures and Algorithm Analysis in C (Second Edition) */

@@ -1,12 +1,11 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself no head linked list library
+  myself sorting library
 */
 
 #include <stdio.h>
 #include <time.h>
-#include "array.h"
-
+#include "sort.h"
 
 int main()
 {

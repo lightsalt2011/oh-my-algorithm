@@ -1,6 +1,6 @@
 /*
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself array library
+  myself sorting library
 */
 #include <stdio.h>
 #include <stdlib.h>
