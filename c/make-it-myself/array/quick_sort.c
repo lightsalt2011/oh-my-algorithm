@@ -45,19 +45,9 @@ static int _qsort(int array[], int start, int end)
 
 int quick_sort(int array[], int len)
 {
-  int i, j;
-  int tmp;
-
   //position
   int start=0;
   int end=len - 1;
-
-  if (array==NULL || len < 1) {
-    printf("error\n");
-    return -1;
-  } else if (len == 1) {
-    return 0;
-  }
 
   _qsort(array, start, end);
 }

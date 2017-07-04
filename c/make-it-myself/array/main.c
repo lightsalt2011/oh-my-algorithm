@@ -10,8 +10,8 @@
 
 int main()
 {
-  int len = 50;
-  int loop = 1000000;
+  int len = 250000;
+  int loop = 100;
   int i = 0;
 
   int my_array[len];
@@ -33,7 +33,7 @@ int main()
   }
   end = clock();
   display_array(my_array, len);
-  printf("time is %5.2f\n\n", difftime(end,begin));
+  printf("time is %.2f\n\n", difftime(end,begin));
 
   printf("bubble sort\n");
   begin = clock();
@@ -81,6 +81,16 @@ int main()
   for(i=0; i<loop; i++){
     random_array(my_array, len);
     heap_sort(my_array, len);
+  }
+  end = clock();
+  display_array(my_array, len);
+  printf("time is %.2f\n\n", difftime(end,begin));
+
+  printf("merge sort\n");
+  begin = clock();
+  for(i=0; i<loop; i++){
+    random_array(my_array, len);
+    merge_sort(my_array, len);
   }
   end = clock();
   display_array(my_array, len);

@@ -29,9 +29,13 @@ int selection_sort(struct list **head);
 int insertion_sort(struct list **head);
 int bubble_sort(struct list **head);
 
-//shell_sort.c
-int shell_sort(struct list **head);
-
 //merge_sort.c
 int merge_sort(struct list **head);
+
+// hard to write
+//链表很难实现希尔排序，堆排序和快速排序
+//因为这几种排序需要大量的非连续访问
+//int shell_sort(struct list **head);
+//int heap_sort(struct list **head);
+//int quick_sort(struct list **head);
 #endif
