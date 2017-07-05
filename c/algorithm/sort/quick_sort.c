@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if 0
 static int partition_rowe(int array[], int low, int high)
 {
   //采用Glenn W. Rowe划分算法
@@ -51,3 +52,22 @@ int quick_sort(int array[], int len)
 
   _qsort(array, start, end);
 }
+
+#else //use c stdlib qsort
+
+static int comp(const void *a, const void *b)
+{
+  return (*(int *)a - *(int *)b);//up
+  //return (*(int *)a - *(int *)b);//down
+}
+
+int quick_sort(int array[], int len)
+{
+  int start = 0;
+  int end = len - 1;
+
+  qsort(&array[start], end + 1, sizeof(int), comp);
+  return 0;
+}
+
+#endif

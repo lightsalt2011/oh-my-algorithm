@@ -9,8 +9,8 @@
 
 int main()
 {
-  int len = 250000;
-  int loop = 100;
+  int len = 50;
+  int loop = 1000000;
   int i = 0;
 
   int my_array[len];

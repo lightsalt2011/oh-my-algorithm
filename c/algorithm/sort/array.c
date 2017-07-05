@@ -22,13 +22,13 @@ void random_array(int array[], int len)
   }
 
 	for(int i=0; i < len;i++) {
-		array[i] = rand() % 1000000;
+		array[i] = rand() % 100;
 	}
 }
 
 void display_array(int array[], int len)
 {
-  return;
+  //  return;
 
   if(array == NULL || len == 0) {
     printf("empty array\n");
