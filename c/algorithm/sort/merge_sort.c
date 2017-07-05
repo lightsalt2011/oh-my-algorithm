@@ -1,7 +1,8 @@
 /*
+  oh-my-algorithm sort
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself sorting library
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 

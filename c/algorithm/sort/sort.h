@@ -1,17 +1,10 @@
 /*
+  oh-my-algorithm sort
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself sorting library
 */
+
 #ifndef _SORT_H_
 #define _SORT_H_
-
-/* since array is often in stack not heap, we do not need 'create func' by malloc */
-/* array must give its length */
-
-//array.c
-void random_array(int array[], int len);
-void display_array(int array[], int len);
-int reverse_array(int array[], int len);
 
 //simple_sort.c
 //time:  O(n^2)

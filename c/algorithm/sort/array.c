@@ -1,44 +1,49 @@
 /*
+  oh-my-algorithm array
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself sorting library
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "sort.h"
+#include "array.h"
 
-void random_array(int array[], int len)
+int random_array(int array[], int len, unsigned int limit)
 {
-  static int init = 0;
-  if(!init){
-    //init = 1;
-    //srand(time(0));
-    srand(63);
-  }
+  //srand(clock());
 
   if(array == NULL || len == 0) {
     printf("empty array\n");
-    return;
+    return -1;
   }
 
-	for(int i=0; i < len;i++) {
-		array[i] = rand() % 100;
-	}
+  if(!limit)
+	  for(int i=0; i < len;i++) {
+		  array[i] = rand();
+    }
+  else
+	  for(int i=0; i < len;i++) {
+		  array[i] = rand() % limit;
+    }
+
+  return 0;
 }
 
-void display_array(int array[], int len)
+int display_array(int array[], int len)
 {
-  //  return;
+  //  return 0;
 
   if(array == NULL || len == 0) {
     printf("empty array\n");
-    return;
+    return -1;
   }
 
   for(int i=0; i < len; i++) {
       printf("%d ", array[i]);
   }
   printf("\n");
+
+  return 0;
 }
 
 int reverse_array(int array[], int len)
@@ -49,4 +54,6 @@ int reverse_array(int array[], int len)
 
   for(int i=0; i<len; i++)
     array[i] = tmp[i];
+
+  return 0;
 }

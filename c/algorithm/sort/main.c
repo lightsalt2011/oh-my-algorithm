@@ -1,107 +1,57 @@
 /*
+  oh-my-algorithm sort
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself sorting library
 */
 
 #include <stdio.h>
 #include <time.h>
+#include "array.h"
 #include "sort.h"
 
-int main()
+#define ARRAY_LEN 500000
+
+#define LOOP_TIME 10
+static int sort_profiler(int array[], int len, int (*func_sort)(int array[], int len))
 {
-  int len = 50;
-  int loop = 1000000;
-  int i = 0;
 
-  int my_array[len];
-
+  int loop = LOOP_TIME;
   time_t begin;
   time_t end ;
 
-  random_array(my_array, len);
-  display_array(my_array, len);
-  printf("reverse array\n");
-  reverse_array(my_array, len);
-  display_array(my_array, len);
-  printf("\n");
-
-  printf("random array\n");
   begin = clock();
-  for(i=0; i<loop; i++) {
-    random_array(my_array, len);
+  for(int i=0; i<loop; i++) {
+    random_array(array, len, len*10);
+    func_sort(array, len);
   }
   end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
+  printf("sort time is %d ms \n\n", (int)difftime(end,begin));
+}
+
+int main()
+{
+  int len = ARRAY_LEN;
+  int my_array[ARRAY_LEN];
 
   printf("bubble sort\n");
-  begin = clock();
-  for(i=0; i<loop; i++) {
-    random_array(my_array, len);
-    bubble_sort(my_array, len);
-  }
-  end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
+  sort_profiler(my_array, len, bubble_sort);
 
   printf("selection sort\n");
-  begin = clock();
-  for(i=0; i<loop; i++){
-    random_array(my_array, len);
-    selection_sort(my_array, len);
-  }
-  end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
-
+  sort_profiler(my_array, len, selection_sort);
 
   printf("insertion sort\n");
-  begin = clock();
-  for(i=0; i<loop; i++){
-    random_array(my_array, len);
-    insertion_sort(my_array, len);
-  }
-  end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
+  sort_profiler(my_array, len, insertion_sort);
 
   printf("shell sort\n");
-  begin = clock();
-  for(i=0; i<loop; i++){
-    random_array(my_array, len);
-    shell_sort(my_array, len);
-  }
-  end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
+  sort_profiler(my_array, len, shell_sort);
 
   printf("heap sort\n");
-  begin = clock();
-  for(i=0; i<loop; i++){
-    random_array(my_array, len);
-    heap_sort(my_array, len);
-  }
-  end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
+  sort_profiler(my_array, len, heap_sort);
 
   printf("merge sort\n");
-  begin = clock();
-  for(i=0; i<loop; i++){
-    random_array(my_array, len);
-    merge_sort(my_array, len);
-  }
-  end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
+  sort_profiler(my_array, len, merge_sort);
 
   printf("quick sort\n");
-  begin = clock();
-  for(i=0; i<loop; i++){
-    random_array(my_array, len);
-    quick_sort(my_array, len);
-  }
-  end = clock();
-  display_array(my_array, len);
-  printf("time is %.2f\n\n", difftime(end,begin));
+  sort_profiler(my_array, len, quick_sort);
+
+  //display_array(my_array, len);
 }

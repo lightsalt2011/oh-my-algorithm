@@ -1,11 +1,10 @@
 /*
+  oh-my-algorithm sort
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself sorting library
 */
 
 /* http://blog.csdn.net/u010155023/article/details/43951129 */
 
-#include <stdio.h>
 #include <stdlib.h>
 
 #if 0

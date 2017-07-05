@@ -1,6 +1,6 @@
 /*
+  oh-my-algorithm sort
   copyright by bokenshonen(kidd.dawny.lu@gmail.com)
-  myself sorting library
 */
 
 /* src from Data Structures and Algorithm Analysis in C (Second Edition) */

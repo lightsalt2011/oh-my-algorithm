@@ -1,5 +1,5 @@
 
-#### Sorting algorithms
+#### Sort algorithms
 
 * [Bubble Sort](https://github.com/kiddlu/oh-my-algorithm/blob/master/c/algorithm/sort/simple_sort.c) [(wiki)](http://en.wikipedia.org/wiki/Bubble_sort)
 * [Selection Sort](https://github.com/kiddlu/oh-my-algorithm/blob/master/c/algorithm/sort/simple_sort.c) [(wiki)](http://en.wikipedia.org/wiki/Selection_sort)
